@@ -1,5 +1,6 @@
 package com.nabin.graphqlpractice.services.impl;
 
+import com.nabin.graphqlpractice.dtos.AuthorDto;
 import com.nabin.graphqlpractice.entities.Author;
 import com.nabin.graphqlpractice.repositories.AuthorRepo;
 import com.nabin.graphqlpractice.services.AuthorService;
@@ -19,8 +20,13 @@ public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepo authorRepo;
 
+
     @Override
-    public Author save(Author author) {
+    public Author save(AuthorDto authorDto) {
+        Author author = Author.builder()
+                .name(authorDto.getName())
+                .thumbnail(authorDto.getThumbnail())
+                .build();
         return authorRepo.save(author);
     }
 

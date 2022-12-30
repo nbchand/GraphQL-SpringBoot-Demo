@@ -1,5 +1,6 @@
 package com.nabin.graphqlpractice.services;
 
+import com.nabin.graphqlpractice.dtos.AuthorDto;
 import com.nabin.graphqlpractice.entities.Author;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * @since 2022-12-27
  */
 public interface AuthorService {
-    Author save(Author author);
+    Author save(AuthorDto authorDto);
     Author findById(Integer id);
     List<Author> findAll();
     void deleteById(Integer id);
