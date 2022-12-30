@@ -6,12 +6,14 @@ import com.nabin.graphqlpractice.entities.Post;
 import com.nabin.graphqlpractice.services.AuthorService;
 import com.nabin.graphqlpractice.services.PostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class AuthorController {
 
     private final AuthorService authorService;
@@ -37,7 +40,7 @@ public class AuthorController {
     }
 
     @MutationMapping(name = "createAuthor")
-    public Author createAuthor(@Argument AuthorDto authorDto) {
+    public Author createAuthor(@Valid @Argument AuthorDto authorDto) {
         return authorService.save(authorDto);
     }
 }
